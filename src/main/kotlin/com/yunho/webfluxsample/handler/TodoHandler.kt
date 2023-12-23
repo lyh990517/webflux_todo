@@ -1,5 +1,6 @@
 package com.yunho.webfluxsample.handler
 
+import com.yunho.webfluxsample.handler.dto.TodoListResponse
 import com.yunho.webfluxsample.handler.dto.TodoResponse
 import com.yunho.webfluxsample.service.TodoService
 import org.springframework.http.HttpStatus
@@ -26,7 +27,7 @@ class TodoHandler(private val todoService: TodoService) {
 
     fun getTodos(serverRequest: ServerRequest) : Mono<ServerResponse> {
         return todoService.getTodos().flatMap {
-            ServerResponse.ok().bodyValue(it)
+            ServerResponse.ok().bodyValue(TodoListResponse(it))
         }
     }
 }

@@ -8,7 +8,7 @@ import java.lang.RuntimeException
 
 @Repository
 class TodoRepository {
-    private val todos = mutableListOf(TodoEntity(1, "hello"), TodoEntity(2, "world"))
+    private val todos = mutableListOf(TodoEntity(0, "hello"), TodoEntity(1, "world"))
 
     fun findById(id: Int): Mono<TodoEntity> {
         return Mono.just(todos.first { it.id == id })
