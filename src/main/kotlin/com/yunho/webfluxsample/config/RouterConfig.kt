@@ -11,7 +11,8 @@ class RouterConfig(private val todoHandler: TodoHandler) {
     @Bean
     fun route() = router {
         "/api".nest {
-            GET("/{id}",todoHandler::getTodoById)
+            GET("/{id}", todoHandler::getTodoById)
+            GET("", todoHandler::getTodos)
         }
     }
 }

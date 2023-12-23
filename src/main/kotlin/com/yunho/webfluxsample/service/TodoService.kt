@@ -11,4 +11,13 @@ class TodoService(private val repository: TodoRepository) {
     fun getTodoById(id: Int): Mono<Todo> {
         return repository.findById(id).map { entity -> Todo(entity.id, entity.content) }
     }
+
+    fun getTodos(): Mono<List<Todo>> {
+        return repository.getTodos()
+            .map { list ->
+                list.map { entity ->
+                    Todo(entity.id, entity.content)
+                }
+            }
+    }
 }

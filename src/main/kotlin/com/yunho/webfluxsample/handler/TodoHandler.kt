@@ -23,4 +23,10 @@ class TodoHandler(private val todoService: TodoService) {
             ResponseStatusException(HttpStatus.NOT_FOUND)
         }
     }
+
+    fun getTodos(serverRequest: ServerRequest) : Mono<ServerResponse> {
+        return todoService.getTodos().flatMap {
+            ServerResponse.ok().bodyValue(it)
+        }
+    }
 }

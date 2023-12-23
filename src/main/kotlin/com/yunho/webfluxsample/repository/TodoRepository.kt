@@ -14,4 +14,8 @@ class TodoRepository {
         return Mono.just(todos.first { it.id == id })
             .switchIfEmpty { Mono.error(RuntimeException("no id!")) }
     }
+
+    fun getTodos(): Mono<List<TodoEntity>> {
+        return Mono.just(todos.toList())
+    }
 }
