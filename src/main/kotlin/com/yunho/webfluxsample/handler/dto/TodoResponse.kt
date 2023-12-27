@@ -4,6 +4,6 @@ import lombok.Data
 
 @Data
 data class TodoResponse(
-    val id: Int,
+    val id: Long,
     val content: String
 )

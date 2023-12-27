@@ -28,6 +28,10 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+
+	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+	implementation("org.mariadb:r2dbc-mariadb:1.0.0")
+	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 }
 
 tasks.withType<KotlinCompile> {
