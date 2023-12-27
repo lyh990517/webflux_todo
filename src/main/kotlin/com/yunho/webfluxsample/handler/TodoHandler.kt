@@ -29,6 +29,7 @@ class TodoHandler(private val todoService: TodoService) {
 
     fun getTodos(serverRequest: ServerRequest): Mono<ServerResponse> {
         return todoService.getTodos().collectList().flatMap {
+            println("$it")
             ServerResponse.ok().bodyValue(TodoListResponse(it))
         }
     }

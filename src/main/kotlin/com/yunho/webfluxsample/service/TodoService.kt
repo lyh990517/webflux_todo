@@ -11,21 +11,20 @@ import reactor.core.publisher.Mono
 class TodoService(private val repository: TodoRepository) {
 
     fun getTodoById(id: Long): Mono<Todo> {
-        return repository.findById(id).map { entity -> Todo(entity.id, entity.content) }
+        return repository.findById(id).map { entity -> Todo(entity.id ?: 0, entity.content) }
     }
 
     fun getTodos(): Flux<Todo> {
         return repository.findAll().map { entity ->
-            Todo(entity.id, entity.content)
+            Todo(entity.id ?: 0, entity.content)
         }
     }
 
-    fun createTodos(todo: Todo): Mono<TodoEntity> {
-        val entity = TodoEntity(todo.id, todo.content)
-        return repository.save(entity)
+    fun createTodos(todo: Todo) {
+        repository.save(TodoEntity(null, todo.content)).subscribe()
     }
 
-    fun deleteTodo(id: Long): Mono<Void> {
-        return repository.deleteById(id)
+    fun deleteTodo(id: Long) {
+        repository.deleteById(id).subscribe()
     }
 }

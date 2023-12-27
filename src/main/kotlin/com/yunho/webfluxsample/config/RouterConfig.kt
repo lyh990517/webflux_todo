@@ -13,8 +13,8 @@ class RouterConfig(private val todoHandler: TodoHandler) {
         "/api".nest {
             GET("/{id}", todoHandler::getTodoById)
             GET("", todoHandler::getTodos)
-            POST("/create",todoHandler::createTodo)
-            DELETE("/delete/{id}",todoHandler::deleteTodo)
+            POST("",todoHandler::createTodo)
+            DELETE("/{id}",todoHandler::deleteTodo)
         }
     }
 }
