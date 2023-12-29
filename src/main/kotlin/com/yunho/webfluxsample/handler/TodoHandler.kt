@@ -35,21 +35,20 @@ class TodoHandler(private val todoService: TodoService) {
     }
 
     fun createTodo(serverRequest: ServerRequest): Mono<ServerResponse> {
-        return serverRequest
-            .bodyToMono(Todo::class.java)
-            .doOnNext {
-                todoService.createTodos(it)
-            }.flatMap {
+        return serverRequest.bodyToMono(Todo::class.java).flatMap {
+            todoService.createTodos(it).flatMap { entity ->
                 ServerResponse.status(HttpStatus.CREATED)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .bodyValue(it)
+                    .bodyValue(entity)
             }
+        }
     }
 
     fun deleteTodo(serverRequest: ServerRequest): Mono<ServerResponse> {
         val id = serverRequest.pathVariables()["id"]?.toLong() ?: 1
 
-        todoService.deleteTodo(id)
-        return ServerResponse.ok().bodyValue(id)
+        return todoService.deleteTodo(id).flatMap {
+            ServerResponse.ok().bodyValue(id)
+        }
     }
 }

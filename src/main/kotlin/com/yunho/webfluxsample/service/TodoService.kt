@@ -4,6 +4,7 @@ import com.yunho.webfluxsample.entity.Todo
 import com.yunho.webfluxsample.entity.TodoEntity
 import com.yunho.webfluxsample.repository.TodoRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -20,11 +21,11 @@ class TodoService(private val repository: TodoRepository) {
         }
     }
 
-    fun createTodos(todo: Todo) {
-        repository.save(TodoEntity(null, todo.content)).subscribe()
+    fun createTodos(todo: Todo) :Mono<TodoEntity> {
+        return repository.save(TodoEntity(null, todo.content))
     }
 
-    fun deleteTodo(id: Long) {
-        repository.deleteById(id).subscribe()
+    fun deleteTodo(id: Long) : Mono<Void>{
+        return repository.deleteById(id)
     }
 }
