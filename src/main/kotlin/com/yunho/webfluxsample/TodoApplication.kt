@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class WebfluxsampleApplication
+class TodoApplication
 
 fun main(args: Array<String>) {
-	runApplication<WebfluxsampleApplication>(*args)
+	runApplication<TodoApplication>(*args)
 }

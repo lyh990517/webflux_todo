@@ -1,8 +1,8 @@
 package com.yunho.webfluxsample.handler
 
 import com.yunho.webfluxsample.entity.Todo
-import com.yunho.webfluxsample.handler.dto.TodoListResponse
-import com.yunho.webfluxsample.handler.dto.TodoResponse
+import com.yunho.webfluxsample.dto.TodoListResponse
+import com.yunho.webfluxsample.dto.TodoResponse
 import com.yunho.webfluxsample.service.TodoService
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType

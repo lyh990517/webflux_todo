@@ -1,4 +1,4 @@
-package com.yunho.webfluxsample.handler.dto
+package com.yunho.webfluxsample.dto
 
 import com.yunho.webfluxsample.entity.Todo
 import lombok.Data
